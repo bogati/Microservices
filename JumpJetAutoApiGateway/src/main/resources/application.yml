@@ -1,0 +1,52 @@
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          netflix:
+            zuul: trace
+server:
+  port: 9000
+spring:
+  application:
+    name: api-zuul
+  sleuth:
+    enabled: true
+    sampler: 
+      rate: 1
+     
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:7000
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+zuul:
+  ignored-services: '*' 
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  prefix: /api
+  routes:
+    account-service:
+      path: /accounts/**
+      service-id: account-service
+    customer-service:
+      path: /customers/**
+      service-id: customer-service
+    work-management-service:
+      path: /jobcards/**
+      service-id: work-management-service
+    employee-service:
+      path: /employees/**
+      service-id: employee-service
+    appointment-service:
+      path: /appointments/**
+      service-id: appointment-service
+    vehicle-service: 
+      path: /vehicles/**
+      service-id: vehicle-service
+    
