@@ -18,12 +18,15 @@ public class Vehicle implements Serializable {
 		private Integer mileage;
 		private String color;
 		
+		//added later Bimala 
+		private Integer customerId;
+		
 		//default constructor
 		public Vehicle() {
-			this("N/A", "N/A","N/A", 1000, -1, "N/A");
+			this("N/A", "N/A","N/A", 1000, -1, "N/A",101);
 		}
 		
-		public Vehicle(String vin, String brand, String model, Integer year, Integer mileage, String color) {
+		public Vehicle(String vin, String brand, String model, Integer year, Integer mileage, String color, Integer customerId) {
 			super();
 			this.vin = vin;
 			this.brand = brand;
@@ -31,6 +34,9 @@ public class Vehicle implements Serializable {
 			this.year = year;
 			this.mileage = mileage;
 			this.color = color;
+			
+			//added later Bimala 
+			this.customerId=customerId;
 		}
 		
 		public String getVin() {
@@ -70,9 +76,20 @@ public class Vehicle implements Serializable {
 			this.color = color;
 		}
 		
+		
+		//added later -Bimala 
+		public Integer getCustomerId() {
+			return customerId;
+		}
+		public void setCustomerId(Integer customerId) {
+			this.customerId = customerId;
+		}
+		
+		
+		
 		@Override
 		public String toString() {
 			return "vehicle [vin=" + vin + ", brand=" + brand + ", model=" + model + ", year=" + year
-					+ ", mileage=" + mileage + ", color=" + color + "]";
+					+ ", mileage=" + mileage + ", color=" + color + "]" + "customerId [customerId =" +customerId + "]";
 		}
 }
