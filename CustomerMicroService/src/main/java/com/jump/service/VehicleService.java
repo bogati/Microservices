@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jump.model.Vehicle;
-import com.jump.service.fallback.VehicleServiceImpl;
+
 
 //there is no implementation like the controller class, the implementation is done by feign 
-
-@FeignClient(name = "vehicle-service", fallback = VehicleServiceImpl.class)
+//fallback = VehicleServiceImpl.class 
+@FeignClient(name = "vehicle-service")
 public interface VehicleService {
 
 	@PostMapping("vehicle")

@@ -47,7 +47,7 @@ public class CustomerController {
 		List<Customer> customers = customerService.getCustomers();
 
 		for (Customer c : customers) {
-			c.setVehicles(vehicleService.findVehiclesByCustomer(c.getId()));
+			c.setVehicles(vehicleService.findVehiclesByCustomer(c.getCustomerId()));
 			
 		}
 		return customers;
@@ -91,10 +91,10 @@ public class CustomerController {
 		}
 		Customer result = customerService.addCustomer(customer);
 	
-		result.setVehicles(vehicleService.findVehiclesByCustomer(result.getId()));
+		result.setVehicles(vehicleService.findVehiclesByCustomer(result.getCustomerId()));
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(result.getId()).toUri();
+				.buildAndExpand(result.getCustomerId()).toUri();
 		return ResponseEntity.created(location).body(result);
 		
 	}

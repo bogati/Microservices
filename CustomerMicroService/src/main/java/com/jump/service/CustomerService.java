@@ -33,7 +33,7 @@ public class CustomerService {
 
   public Customer updateCustomer(Customer customer) {
 
-    getCustomerById(customer.getId());
+    getCustomerById(customer.getCustomerId());
     return customerRepository.save(customer);
   }
 
