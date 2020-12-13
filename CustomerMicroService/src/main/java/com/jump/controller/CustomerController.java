@@ -32,14 +32,17 @@ public class CustomerController {
   //consuming the feignclient VehicleService here 
   @Autowired
   VehicleService vehicleService;
-/*
+
+  /*
   @GetMapping()
   public ResponseEntity<List<Customer>> getCustomers() {
 
     return ResponseEntity.ok(customerService.getCustomers());
   }
   */
+  
   //added later -bimala 
+
   
 	@GetMapping
 	public Iterable<Customer> getCustomers() {
@@ -52,6 +55,7 @@ public class CustomerController {
 		}
 		return customers;
 	}
+	
 	/*
   @GetMapping("/{id}")
   public Customer getCustomer(@PathVariable("id") int id) {
@@ -60,28 +64,32 @@ public class CustomerController {
   */
 	//added later -bimala 
   
+	//the returned value of customer will have the vehicles information 
   @GetMapping(value = "/{customerId}")
-	public Customer getCustomerByVehicleId(@PathVariable Integer customerId) {
+	public Customer getVehiclesByCustomerId(@PathVariable Integer customerId) {
 		Customer customer = customerService.getCustomerById(customerId);
 		customer.setVehicles(vehicleService.findVehiclesByCustomer(customerId));
 		return customer;
 	}
-  /*
+  
+  
   //original way of doing the post 
+  /*
   @PostMapping()
   public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 
     Customer result = customerService.addCustomer(customer);
 
-    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId())
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getCustomerId())
         .toUri();
     return ResponseEntity.created(location).body(result);
 
   }
   */
+  
   //added later --- bimala 
   //new way of doing the post after using the feign client 
-  
+ 
   @PostMapping
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 	  //getVehicles is implemented by Lombok -fyi
@@ -98,6 +106,7 @@ public class CustomerController {
 		return ResponseEntity.created(location).body(result);
 		
 	}
+
 /*
   @PutMapping("/{customerId}")
   public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customer) {

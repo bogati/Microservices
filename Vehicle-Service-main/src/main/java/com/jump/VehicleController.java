@@ -39,7 +39,7 @@ public class VehicleController {
 	IMPLEMENTATION BELOW 
 	*/
 	
-	//find all the vehicles of a given customer , basically , find all the vehicles by customerid
+	//find all the vehicles of a given customer , basically , find all the vehicles by customerId
 	@GetMapping("customer/{customerId}" )
 	public List<Vehicle> findVehiclesByCustomerId(@PathVariable Integer customerId) {
 		return service.findAllByCustomerId(customerId);
@@ -60,7 +60,7 @@ public class VehicleController {
 
 	}
 	*/
-	//NEWER VERSION OF THE POST
+	//NEWER VERSION OF THE POST -ABOVE can be used too
 	@PostMapping
 	public ResponseEntity<Vehicle> save(@RequestBody Vehicle vehicle) {
 		Vehicle result = service.save(vehicle);
@@ -100,18 +100,4 @@ public class VehicleController {
 		}
 	}
 	
-	//added later for implementations for the vehicle 
-	//the logic that i earlier used that vehicle controller has nothing to do with implementation is 
-	//because the class does not have extend in the definiton 
-	/*
-	 * this implementation of the function in vehicleservice is taken care of by regular post above)
-	@PostMapping("vehicle")
-	Vehicle addVehicle(@RequestBody Vehicle vehicle);
-    */
-	
-	/*
-	//check your assumptions here  and the method is implemented at the top 
-	@GetMapping(value = "vehicle/customer/{customerId}")
-	List<Vehicle> findVehiclesByCustomer(@PathVariable Integer customerId);
-	*/
 }
